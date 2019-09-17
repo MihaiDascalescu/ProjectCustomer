@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Objectives : MonoBehaviour
 {
-    private enum ObjectiveState
+    public enum ObjectiveState
     {
         FirstObjective,
         SecondObjective,
@@ -14,17 +14,18 @@ public class Objectives : MonoBehaviour
     public GameObject FirstObjective;
     public GameObject SecondObjective;
     public GameObject ThirdObjective;
+    private PlayerCollisions playerCollisions;
     // Start is called before the first frame update
     public bool FirstObjectiveIsEnabled = false;
     public bool SecondObjectiveIsEnabled = false; 
     public bool ThirdObjectiveIsEnabled = false;
 
     public float objectiveTimer;
-    private ObjectiveState currentState = ObjectiveState.FirstObjective;
+    public ObjectiveState currentState = ObjectiveState.FirstObjective;
     void Start()
     {
         objectiveTimer = 30f;
-       
+        playerCollisions = FindObjectOfType<PlayerCollisions>();
     }
     // Update is called once per frame
     private void Update()
@@ -79,6 +80,10 @@ public class Objectives : MonoBehaviour
             currentState = ObjectiveState.EndGame;
             
             ThirdObjective.SetActive(false);
+        }
+        if( playerCollisions.buildingIsHit == true)
+        {
+            currentState = ObjectiveState.EndGame;
         }
     }
 
