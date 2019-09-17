@@ -22,11 +22,15 @@ public class ScoreCalculator : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        score += Time.deltaTime;
+        if(objectives.currentState != Objectives.ObjectiveState.EndGame)
+        {
+            score += Time.deltaTime;
+
+            UpdateBar();
+            scoreText.text = "" + score.ToString("f0");
+            timerText.text = "" + objectives.objectiveTimer.ToString("f0");
+        }
         
-        UpdateBar();
-        scoreText.text = "" + score.ToString("f0");
-        timerText.text = "" + objectives.objectiveTimer.ToString("f0");
 
     }
     private void UpdateBar()
