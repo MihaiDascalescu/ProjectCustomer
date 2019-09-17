@@ -4,11 +4,12 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    
     private AlcoholMeter alcoholMeter;
-
+    private Objectives objectives;
     private SpawnObject spawnAlcohol;
     private ScoreCalculator scoreCalculator;
-
+    private PlayerCollisions playerCollisions;
 
     public float moveSpeed = 0.01f;
     private Vector3 moveDirection;
@@ -20,28 +21,39 @@ public class PlayerController : MonoBehaviour
     public float counterWine = 1f;
 
 
-
+   
 
     private void Start()
     {
         alcoholMeter = FindObjectOfType<AlcoholMeter>();
         spawnAlcohol = FindObjectOfType<SpawnObject>();
         scoreCalculator = FindObjectOfType<ScoreCalculator>();
+        playerCollisions = FindObjectOfType<PlayerCollisions>();
+        objectives = FindObjectOfType<Objectives>();
     }
     private void Update()
     {
         float moveAxis = Input.GetAxis(moveInputAxis);
         float turnAxis = Input.GetAxis(turnInputAxis);
+        
+            
+        if(objectives.currentState != Objectives.ObjectiveState.EndGame)
+        {
+            ApplyInput(moveAxis, turnAxis);
+            if (alcoholMeter.isWine)
+            {
+                counterWine -= Time.deltaTime;
+            }
+            if (alcoholMeter.isWhisky)
+            {
+                counterLimit -= Time.deltaTime;
+            }
+        }
+        else
+        {
 
-        ApplyInput(moveAxis, turnAxis);
-        if (alcoholMeter.isWine)
-        {
-            counterWine -= Time.deltaTime;
         }
-        if (alcoholMeter.isWhisky)
-        {
-            counterLimit -= Time.deltaTime;
-        }
+        
         //Debug.Log(counterLimit);
         //Debug.Log(counterWine);
 
