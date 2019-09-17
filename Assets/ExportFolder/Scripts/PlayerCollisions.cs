@@ -7,6 +7,11 @@ public class PlayerCollisions : MonoBehaviour
     public bool buildingIsHit = false;
     public bool carIsHit = false;
     public bool treeIsHit = false;
+
+    public GameObject BuildingIsHitPenalty;
+    public GameObject AccidentWith004Penalty;
+    public GameObject ExtremelyDrunkPenalty;
+    
     
     void Start()
     {
@@ -23,6 +28,7 @@ public class PlayerCollisions : MonoBehaviour
         if(collision.gameObject.tag == "Building")
         {
             buildingIsHit = true;
+            BuildingIsHitPenalty.SetActive(true);
         }
         if(collision.gameObject.tag == "Car")
         {
