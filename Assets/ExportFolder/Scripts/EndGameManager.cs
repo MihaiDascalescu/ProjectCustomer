@@ -18,6 +18,7 @@ public class EndGameManager : MonoBehaviour
     {
         playerCollisions = FindObjectOfType<PlayerCollisions>();
         alcoholMeter = FindObjectOfType<AlcoholMeter>();
+        objectives = FindObjectOfType<Objectives>();
     }
 
     // Update is called once per frame

@@ -32,7 +32,7 @@ public class Objectives : MonoBehaviour
     {
         
         objectiveTimer -= Time.deltaTime;
-        Debug.Log("" + objectiveTimer);
+
         AllStates();
         SwitchStates();
         
