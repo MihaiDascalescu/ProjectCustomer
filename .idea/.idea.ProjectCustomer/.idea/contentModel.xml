@@ -336,11 +336,11 @@
           <e p="Rotate.cs" t="Include" />
           <e p="Rotation.cs" t="Include" />
           <e p="SceneManager.cs" t="Include" />
+          <e p="ShowDescription.cs" t="Include" />
           <e p="SpawnAlcohol.cs" t="Include" />
           <e p="SpawnNodes.cs" t="Include" />
           <e p="SpawnObject.cs" t="Include" />
         </e>
-        <e p="ShowDescription.cs" t="Include" />
         <e p="Smart" t="Include">
           <e p="LevelEditor" t="Include">
             <e p="Documentation.txt" t="Include" />
