@@ -342,6 +342,9 @@
           <e p="SpawnNodes.cs" t="Include" />
           <e p="SpawnObject.cs" t="Include" />
         </e>
+        <e p="Shader" t="Include">
+          <e p="NewTry.shader" t="Include" />
+        </e>
         <e p="Smart" t="Include">
           <e p="LevelEditor" t="Include">
             <e p="Documentation.txt" t="Include" />
