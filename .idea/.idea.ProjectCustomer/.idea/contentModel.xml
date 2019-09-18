@@ -10,6 +10,7 @@
         <e p="Blinking" t="Include">
           <e p="BlinkingEffect.cs" t="Include" />
         </e>
+        <e p="DrinkEffect.cs" t="Include" />
         <e p="ExportFolder" t="Include">
           <e p="Scripts" t="Include">
             <e p="EndGameManager.cs" t="Include" />
@@ -369,6 +370,7 @@
             </e>
           </e>
         </e>
+        <e p="WhiskeyPickUp.cs" t="Include" />
       </e>
       <e p="obj" t="ExcludeRecursive" />
       <e p="Packages" t="ExcludeRecursive" />

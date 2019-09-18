@@ -11,6 +11,9 @@ public class PlayerController : MonoBehaviour
     private ScoreCalculator scoreCalculator;
     private PlayerCollisions playerCollisions;
 
+    public GameObject Bubbles;
+    public GameObject Blinking;
+
     public float moveSpeed = 0.01f;
     private Vector3 moveDirection;
     private string moveInputAxis = "Vertical";
@@ -136,7 +139,11 @@ public class PlayerController : MonoBehaviour
         if (other.gameObject.tag == "Whisky")
         {
             alcoholMeter.GetWhisky();
+            Instantiate(Bubbles,spawnAlcohol.gameObject.transform.position, Quaternion.identity);
+            Debug.Log(Instantiate(Bubbles,spawnAlcohol.gameObject.transform.position, Quaternion.identity));
             Destroy(other.gameObject);
+            
+            Blinking.SetActive(true);
 
 
             spawnAlcohol.AlcoholCount--;
@@ -145,6 +152,8 @@ public class PlayerController : MonoBehaviour
         if (other.gameObject.tag == "Wine")
         {
             alcoholMeter.GetWine();
+            Instantiate(Bubbles,spawnAlcohol.gameObject.transform.position, Quaternion.identity);
+            Debug.Log(Instantiate(Bubbles,spawnAlcohol.gameObject.transform.position, Quaternion.identity));
             Destroy(other.gameObject);
 
 
@@ -154,8 +163,10 @@ public class PlayerController : MonoBehaviour
         if (other.gameObject.tag == "Beer")
         {
             alcoholMeter.GetBeer();
+            Instantiate(Bubbles,spawnAlcohol.gameObject.transform.position, Quaternion.identity);
+            Debug.Log(Instantiate(Bubbles,spawnAlcohol.gameObject.transform.position, Quaternion.identity));
             Destroy(other.gameObject);
-
+        
 
             spawnAlcohol.AlcoholCount--;
             scoreCalculator.score -= 5;
@@ -163,6 +174,8 @@ public class PlayerController : MonoBehaviour
         if (other.gameObject.tag == "Martini")
         {
             alcoholMeter.GetMartini();
+            Instantiate(Bubbles,spawnAlcohol.gameObject.transform.position, Quaternion.identity);
+            Debug.Log(Instantiate(Bubbles,spawnAlcohol.gameObject.transform.position, Quaternion.identity));
             Destroy(other.gameObject);
 
 
