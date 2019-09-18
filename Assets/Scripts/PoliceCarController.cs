@@ -28,17 +28,14 @@ public class PoliceCarController : MonoBehaviour
     }
     private void Update()
     {
+        alcoholAdmited = alcoholMeter.AlcoholLevel;
         float distance = Vector3.Distance(_player.position, transform.position);
         if (distance <= lookRadius)
         {
             currentState = PoliceState.Track;
 
         }
-        else
-        {
-            currentState = PoliceState.Wait;
-        }
-        if(distance <= lookRadius && alcoholMeter.AlcoholLevel > alcoholAdmited)
+        if(distance <= lookRadius  && alcoholMeter.AlcoholLevel > 90)
         {
             currentState = PoliceState.Follow;
         }
@@ -67,37 +64,20 @@ public class PoliceCarController : MonoBehaviour
     {
         transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(_player.position - transform.position), _rotSpeed * Time.deltaTime);
     }
-
-
-    /*Transform target;
-    NavMeshAgent agent;
-    void Start()
+    private void OnCollisionEnter(Collision collision)
     {
-        target = PlayerManager.instance.Player.transform;
-        agent = GetComponent<NavMeshAgent>();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        float distance = Vector3.Distance(target.position, transform.position);
-
-        if(distance <= lookRadius)
+        if(collision.gameObject.tag == "Building")
         {
-            agent.SetDestination(target.position);
-
-            if(distance <= agent.stoppingDistance)
-            {
-                FaceTarget();
-            }
+            Destroy(gameObject);
+        }
+        if(collision.gameObject.tag == "Car")
+        {
+            Destroy(gameObject);
         }
     }
-    private void FaceTarget()
-    {
-        Vector3 direction = (target.position - transform.position).normalized;
-        Quaternion lookRotation = Quaternion.LookRotation(new Vector3(direction.x, 0, direction.z));
-        transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * 5f);
-    }*/
+
+
+
 }
    
 
