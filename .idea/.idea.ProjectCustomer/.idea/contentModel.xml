@@ -315,6 +315,7 @@
         <e p="RenderTextureMinimap" t="Include">
           <e p="MinimapFollow.cs" t="Include" />
         </e>
+        <e p="RotateSkybox.cs" t="Include" />
         <e p="Scripts" t="Include">
           <e p="AlcoholMeter.cs" t="Include" />
           <e p="CarController.cs" t="Include" />
@@ -339,6 +340,7 @@
           <e p="SpawnNodes.cs" t="Include" />
           <e p="SpawnObject.cs" t="Include" />
         </e>
+        <e p="ShowDescription.cs" t="Include" />
         <e p="Smart" t="Include">
           <e p="LevelEditor" t="Include">
             <e p="Documentation.txt" t="Include" />
