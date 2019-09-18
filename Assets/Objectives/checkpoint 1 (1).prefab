@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 6372278954093600597}
   - component: {fileID: 4342899614681996670}
   - component: {fileID: 6268599038902369813}
+  - component: {fileID: 635972025815946147}
   m_Layer: 0
   m_Name: pTorus1
   m_TagString: Untagged
@@ -77,6 +78,25 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!95 &635972025815946147
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2280612454798982617}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 3e0a5478775e24277801926957bb705e, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &4076285031684044262
 GameObject:
   m_ObjectHideFlags: 0
@@ -134,6 +154,7 @@ GameObject:
   - component: {fileID: 6451696275020331878}
   - component: {fileID: 3109523080873192717}
   - component: {fileID: 5021450808234181948}
+  - component: {fileID: 9070215074414951394}
   m_Layer: 0
   m_Name: pCone1
   m_TagString: Untagged
@@ -200,3 +221,22 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!95 &9070215074414951394
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9044225770875195223}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: e6f374c69e8d04ee59ecca37a52c169c, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
