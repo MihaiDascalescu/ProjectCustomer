@@ -4,15 +4,17 @@ using UnityEngine;
 
 public class BlinkingEffect : MonoBehaviour
 {
-    public string topLidAnimation;
-    public string bottomLidAnimation;
+    public GameObject TopLid;
+    public GameObject BottomLid;
     public GameObject PostProcessingEffect;
+    public float timer;
 
     private Animation anim;
     
     // Start is called before the first frame update
     void Start()
     {
+
         anim = GetComponent<Animation>();
     }
 
@@ -21,15 +23,27 @@ public class BlinkingEffect : MonoBehaviour
     {
        
         Blinking();
-        PostProcessingEffect.SetActive(true);
+
     }
 
     void Blinking()
     {
-        anim.Play(topLidAnimation);
-        anim.Play(bottomLidAnimation);
         
         
+        
+        timer -= Time.deltaTime;
+
+        if (timer <= 0)
+        {
+            PostProcessingEffect.SetActive(true);
+        }
+
+        if (timer < -2)
+        {
+            PostProcessingEffect.SetActive(false);
+        }
+        
+
     }
     
 }

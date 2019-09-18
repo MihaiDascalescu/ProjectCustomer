@@ -10,6 +10,7 @@
         <e p="Blinking" t="Include">
           <e p="BlinkingEffect.cs" t="Include" />
         </e>
+        <e p="DrinkEffect.cs" t="Include" />
         <e p="ExportFolder" t="Include">
           <e p="Scripts" t="Include">
             <e p="EndGameManager.cs" t="Include" />
@@ -315,6 +316,7 @@
         <e p="RenderTextureMinimap" t="Include">
           <e p="MinimapFollow.cs" t="Include" />
         </e>
+        <e p="RotateSkybox.cs" t="Include" />
         <e p="Scripts" t="Include">
           <e p="AlcoholMeter.cs" t="Include" />
           <e p="CarController.cs" t="Include" />
@@ -335,6 +337,7 @@
           <e p="Rotate.cs" t="Include" />
           <e p="Rotation.cs" t="Include" />
           <e p="SceneManager.cs" t="Include" />
+          <e p="ShowDescription.cs" t="Include" />
           <e p="SpawnAlcohol.cs" t="Include" />
           <e p="SpawnNodes.cs" t="Include" />
           <e p="SpawnObject.cs" t="Include" />
@@ -367,6 +370,7 @@
             </e>
           </e>
         </e>
+        <e p="WhiskeyPickUp.cs" t="Include" />
       </e>
       <e p="obj" t="ExcludeRecursive" />
       <e p="Packages" t="ExcludeRecursive" />
