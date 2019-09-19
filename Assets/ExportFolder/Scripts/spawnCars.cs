@@ -9,7 +9,7 @@ public class spawnCars : MonoBehaviour
     private int objectIndex;
    
     private int waitTime;
-    private int carNumber = 5;
+    private int carNumber = 1000;
     public int carCount = 0;
     public float timer = 5;
     public float controlTimer;

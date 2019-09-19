@@ -9,6 +9,7 @@ public class SpawnObject : MonoBehaviour
    
     public Transform sphere;
     public int AlcoholCount;
+    public int objectIndex;
     
     // Start is called before the first frame update
     void Start()
@@ -45,7 +46,7 @@ public class SpawnObject : MonoBehaviour
         Vector3 direction = sphereCenter - GetRandomAlcoholPosition();
         Quaternion orientation = Quaternion.LookRotation(-direction);
 
-        int objectIndex = Random.Range(0, randomObjectSpawn.Length);
+        objectIndex = Random.Range(0, randomObjectSpawn.Length);
         Instantiate(randomObjectSpawn[objectIndex], GetRandomAlcoholPosition(), orientation); // todo: make it child of a "pickups" gameobject 
 
         AlcoholCount++;

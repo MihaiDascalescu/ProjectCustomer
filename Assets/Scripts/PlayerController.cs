@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class PlayerController : MonoBehaviour
 {
     
@@ -13,16 +14,28 @@ public class PlayerController : MonoBehaviour
 
     public GameObject Bubbles;
     public GameObject Blinking;
+    public GameObject PostProcessingForAlcohol;
 
+
+    private CarSound carSound;
+    private BlinkingEffect blink;
+    private AudioSource audioSource;
+    public AudioClip audioClip;
+
+    public AudioClip drinkingEffect;
     public float moveSpeed = 0.01f;
     private Vector3 moveDirection;
     private string moveInputAxis = "Vertical";
     private string turnInputAxis = "Horizontal";
     public float rotationRate = 90f;
 
-    public float counterLimit = 5f;
+    public float counterLimit = 2f;
     public float counterWine = 1f;
+    public float counterMartini = 2f;
+    public float counterBlink = 3f;
+    public float counterPostProcess = 3f;
 
+    private bool isActivated = false;
 
    
 
@@ -33,19 +46,40 @@ public class PlayerController : MonoBehaviour
         scoreCalculator = FindObjectOfType<ScoreCalculator>();
         playerCollisions = FindObjectOfType<PlayerCollisions>();
         objectives = FindObjectOfType<Objectives>();
+        blink = FindObjectOfType<BlinkingEffect>();
+        carSound = FindObjectOfType<CarSound>();
+        audioSource = FindObjectOfType<AudioSource>();
+        
     }
     private void Update()
     {
+       
         float moveAxis = Input.GetAxis(moveInputAxis);
         float turnAxis = Input.GetAxis(turnInputAxis);
-        
-            
-        if(objectives.currentState == Objectives.ObjectiveState.EndGame || objectives.currentState == Objectives.ObjectiveState.Tutorial)
+        counterBlink -= Time.deltaTime;
+        if(counterBlink < 0)
+        {
+            if (isActivated)
+            {
+                Blinking.SetActive(false);
+            }
+        }
+        if (counterPostProcess < 0)
+        {
+            if (isActivated)
+            {
+                PostProcessingForAlcohol.SetActive(false);
+            }
+        }
+
+
+        if (objectives.currentState == Objectives.ObjectiveState.EndGame || objectives.currentState == Objectives.ObjectiveState.Tutorial || objectives.currentState == Objectives.ObjectiveState.TimesUpEnding)
         {
             
         }
         else
         {
+            audioSource.PlayOneShot(audioClip);
             ApplyInput(moveAxis, turnAxis);
             if (alcoholMeter.isWine)
             {
@@ -54,6 +88,10 @@ public class PlayerController : MonoBehaviour
             if (alcoholMeter.isWhisky)
             {
                 counterLimit -= Time.deltaTime;
+            }
+            if (alcoholMeter.isMartini)
+            {
+                counterMartini -= Time.deltaTime;
             }
         }
         
@@ -64,6 +102,7 @@ public class PlayerController : MonoBehaviour
     }
     private void ApplyInput(float moveInput, float turnInput)
     {
+        
         Move(moveInput);
         if (alcoholMeter.isWine)
         {
@@ -106,6 +145,20 @@ public class PlayerController : MonoBehaviour
             counterLimit = 2f;
 
         }
+        if(alcoholMeter.isMartini == true)
+        {
+
+            moveSpeed = 1;
+        }
+        if(counterMartini < 0)
+        {
+            alcoholMeter.isMartini = false;
+            if(alcoholMeter.isMartini == false)
+            {
+                moveSpeed = 5;
+            }
+            counterMartini = 1;
+        }
 
 
 
@@ -138,12 +191,13 @@ public class PlayerController : MonoBehaviour
 
         if (other.gameObject.tag == "Whisky")
         {
+            audioSource.PlayOneShot(drinkingEffect);
+            Instantiate(Bubbles, other.gameObject.transform.position, Quaternion.identity);
             alcoholMeter.GetWhisky();
-            Instantiate(Bubbles,spawnAlcohol.gameObject.transform.position, Quaternion.identity);
-            Debug.Log(Instantiate(Bubbles,spawnAlcohol.gameObject.transform.position, Quaternion.identity));
+
             Destroy(other.gameObject);
             
-            Blinking.SetActive(true);
+           
 
 
             spawnAlcohol.AlcoholCount--;
@@ -151,9 +205,10 @@ public class PlayerController : MonoBehaviour
         }
         if (other.gameObject.tag == "Wine")
         {
+            audioSource.PlayOneShot(drinkingEffect);
             alcoholMeter.GetWine();
-            Instantiate(Bubbles,spawnAlcohol.gameObject.transform.position, Quaternion.identity);
-            Debug.Log(Instantiate(Bubbles,spawnAlcohol.gameObject.transform.position, Quaternion.identity));
+            Instantiate(Bubbles, other.gameObject.transform.position, Quaternion.identity);
+
             Destroy(other.gameObject);
 
 
@@ -162,25 +217,41 @@ public class PlayerController : MonoBehaviour
         }
         if (other.gameObject.tag == "Beer")
         {
+            audioSource.PlayOneShot(drinkingEffect);
             alcoholMeter.GetBeer();
-            Instantiate(Bubbles,spawnAlcohol.gameObject.transform.position, Quaternion.identity);
-            Debug.Log(Instantiate(Bubbles,spawnAlcohol.gameObject.transform.position, Quaternion.identity));
+            Instantiate(Bubbles, other.gameObject.transform.position, Quaternion.identity);
             Destroy(other.gameObject);
-        
 
+            isActivated = true;
+            Blinking.SetActive(true);
+            PostProcessingForAlcohol.SetActive(true);
+            counterBlink = 3f;
+
+            
+           
             spawnAlcohol.AlcoholCount--;
             scoreCalculator.score -= 5;
         }
         if (other.gameObject.tag == "Martini")
         {
+            audioSource.PlayOneShot(drinkingEffect);
             alcoholMeter.GetMartini();
-            Instantiate(Bubbles,spawnAlcohol.gameObject.transform.position, Quaternion.identity);
-            Debug.Log(Instantiate(Bubbles,spawnAlcohol.gameObject.transform.position, Quaternion.identity));
+            Instantiate(Bubbles, other.gameObject.transform.position, Quaternion.identity);
+
             Destroy(other.gameObject);
 
 
             spawnAlcohol.AlcoholCount--;
             scoreCalculator.score -= 3;
+        }
+        if(other.gameObject.tag == "Water")
+        {
+            audioSource.PlayOneShot(drinkingEffect);
+            alcoholMeter.GetSober();
+            Destroy(other.gameObject);
+            Instantiate(Bubbles, other.gameObject.transform.position, Quaternion.identity);
+            spawnAlcohol.AlcoholCount--;
+            scoreCalculator.score += 5;
         }
     }
 

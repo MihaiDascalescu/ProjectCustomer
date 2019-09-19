@@ -10,6 +10,7 @@ public class Objectives : MonoBehaviour
         SecondObjective,
         ThirdObjective,
         Tutorial,
+        TimesUpEnding,
         EndGame
     }
     public GameObject FirstObjective;
@@ -21,8 +22,9 @@ public class Objectives : MonoBehaviour
     public bool FirstObjectiveIsEnabled = false;
     public bool SecondObjectiveIsEnabled = false; 
     public bool ThirdObjectiveIsEnabled = false;
-
+    
     public float objectiveTimer;
+    
     public ObjectiveState currentState = ObjectiveState.Tutorial;
     void Start()
     {
@@ -103,6 +105,10 @@ public class Objectives : MonoBehaviour
         if (playerCollisions.carIsHit == true)
         {
             currentState = ObjectiveState.EndGame;
+        }
+        if(objectiveTimer < 0)
+        {
+            currentState = ObjectiveState.TimesUpEnding;
         }
         
     }

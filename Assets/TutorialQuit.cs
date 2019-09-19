@@ -5,28 +5,36 @@ using UnityEngine;
 public class TutorialQuit : MonoBehaviour
 {
     public bool tutorialOff = false;
-    private float timer = 2;
+    private bool isTrue = false;
+    
+
+    private Objectives objectives;
     public GameObject warningPanel;
     // Start is called before the first frame update
     void Start()
     {
-        
+        objectives = FindObjectOfType<Objectives>();
     }
 
     // Update is called once per frame
     private void Update()
     {
+
+
+       
+       
         if (Input.GetMouseButtonDown(0))
         {
+            
             tutorialOff = true;
             gameObject.SetActive(false);
             warningPanel.gameObject.SetActive(true);
-            timer -= Time.deltaTime;
-            Debug.Log(warningPanel);
+            Destroy(warningPanel.gameObject, 2);
+           
+            
         }
-        if(timer < 0)
-        {
-            warningPanel.gameObject.SetActive(false);
-        }
+       
+           
+        
     }
 }

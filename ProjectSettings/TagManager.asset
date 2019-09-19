@@ -17,6 +17,7 @@ TagManager:
   - SecondObjective
   - RotateRight
   - RotateLeft
+  - Water
   layers:
   - Default
   - TransparentFX
@@ -33,7 +34,7 @@ TagManager:
   - PostProcessing
   - CarRotationLayer
   - PoliceLayer
-  - 
+  - CheckPointLayer
   - 
   - 
   - 
