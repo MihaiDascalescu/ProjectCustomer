@@ -40,7 +40,11 @@ public class PlayerController : MonoBehaviour
         float turnAxis = Input.GetAxis(turnInputAxis);
         
             
-        if(objectives.currentState != Objectives.ObjectiveState.EndGame)
+        if(objectives.currentState == Objectives.ObjectiveState.EndGame || objectives.currentState == Objectives.ObjectiveState.Tutorial)
+        {
+            
+        }
+        else
         {
             ApplyInput(moveAxis, turnAxis);
             if (alcoholMeter.isWine)
@@ -51,10 +55,6 @@ public class PlayerController : MonoBehaviour
             {
                 counterLimit -= Time.deltaTime;
             }
-        }
-        else
-        {
-
         }
         
         //Debug.Log(counterLimit);

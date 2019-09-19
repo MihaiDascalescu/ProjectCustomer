@@ -22,7 +22,12 @@ public class ScoreCalculator : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(objectives.currentState != Objectives.ObjectiveState.EndGame)
+        if(objectives.currentState == Objectives.ObjectiveState.EndGame || objectives.currentState == Objectives.ObjectiveState.Tutorial)
+        {
+            scoreText.text = "" + score.ToString("f0");
+            timerText.text = "" + objectives.objectiveTimer.ToString("f0");
+        }
+        else
         {
             score += Time.deltaTime;
 
@@ -39,6 +44,7 @@ public class ScoreCalculator : MonoBehaviour
         {
 
             AlcoholBar.fillAmount = (float)alcoholMeter.AlcoholLevel / (float)alcoholMeter.AlcoholMaxLevel;
+            
         }
     }
 }

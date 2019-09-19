@@ -36,9 +36,9 @@ public class EndGameManager : MonoBehaviour
             BuildingIsHitPenalty.SetActive(true);
         }
 
-        if (playerCollisions.carIsHit && alcoholMeter.AlcoholLevel == 0 && alcoholMeter.AlcoholLevel == 0)
+        if (playerCollisions.carIsHit && alcoholMeter.AlcoholLevel == 0)
         {
-            
+            AccidentWith004Penalty.SetActive(true);
         }
         //For car accident with small alcohol levels
         if (playerCollisions.carIsHit && alcoholMeter.AlcoholLevel > 0 && alcoholMeter.AlcoholLevel < 40) 

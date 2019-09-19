@@ -9,29 +9,40 @@ public class Objectives : MonoBehaviour
         FirstObjective,
         SecondObjective,
         ThirdObjective,
+        Tutorial,
         EndGame
     }
     public GameObject FirstObjective;
     public GameObject SecondObjective;
     public GameObject ThirdObjective;
     private PlayerCollisions playerCollisions;
+    private TutorialQuit tutorialQuit;
     // Start is called before the first frame update
     public bool FirstObjectiveIsEnabled = false;
     public bool SecondObjectiveIsEnabled = false; 
     public bool ThirdObjectiveIsEnabled = false;
 
     public float objectiveTimer;
-    public ObjectiveState currentState = ObjectiveState.FirstObjective;
+    public ObjectiveState currentState = ObjectiveState.Tutorial;
     void Start()
     {
         objectiveTimer = 30f;
         playerCollisions = FindObjectOfType<PlayerCollisions>();
+        tutorialQuit = FindObjectOfType<TutorialQuit>();
+        currentState = ObjectiveState.Tutorial;
     }
     // Update is called once per frame
     private void Update()
     {
+        if(currentState == ObjectiveState.EndGame || currentState == ObjectiveState.Tutorial)
+        {
+
+        }
+        else 
+        {
+            objectiveTimer -= Time.deltaTime;
+        }
         
-        objectiveTimer -= Time.deltaTime;
 
         AllStates();
         SwitchStates();
@@ -65,6 +76,10 @@ public class Objectives : MonoBehaviour
     }
     private void SwitchStates()
     {
+        if (tutorialQuit.tutorialOff)
+        {
+            currentState = ObjectiveState.FirstObjective;
+        }
         if (FirstObjectiveIsEnabled == true)
         {
             currentState = ObjectiveState.SecondObjective;
@@ -85,6 +100,11 @@ public class Objectives : MonoBehaviour
         {
             currentState = ObjectiveState.EndGame;
         }
+        if (playerCollisions.carIsHit == true)
+        {
+            currentState = ObjectiveState.EndGame;
+        }
+        
     }
 
 }
